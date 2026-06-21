@@ -1,0 +1,45 @@
+<Server>
+  // Layout-level metadata becomes the site-wide SEO default. Pages can override
+  // any field via their own $meta().
+  $meta(() => ({
+    title: "Iga Website — Premium tech, beautifully simple",
+    description: "Iga Website is a demo storefront built with the Kallo framework: server-side rendering, file-based routing, and reactive stores.",
+    openGraph: { siteName: "Iga Website", type: "website" },
+    twitter: { card: "summary_large_image" },
+  }));
+</Server>
+
+<Client>
+  import Navbar from "../components/Navbar.kal";
+  import Footer from "../components/Footer.kal";
+
+
+  const toggleCart = () => cart.toggle();
+  const closeCart = () => cart.close();
+  const incItem = (id) => cart.inc(id);
+  const decItem = (id) => cart.dec(id);
+  const removeItem = (id) => cart.remove(id);
+  const checkout = () => {
+    if (typeof window !== "undefined") window.alert("This is a demo checkout — order placed! 🎉");
+    cart.clear();
+  };
+</Client>
+
+<View>
+  <html lang="en">
+    <head>
+      <link rel="icon" type="image/png" href="/kallo-128.png">
+      <link rel="stylesheet" href="/tailwind.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300..800&family=Inter:wght@300..700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+      <Navbar :onToggleCart="toggleCart" />
+      <main>
+        <Slot />
+      </main>
+      <Footer />
+    </body>
+  </html>
+</View>

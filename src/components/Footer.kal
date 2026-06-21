@@ -1,0 +1,8 @@
+<View>
+  <footer class="border-t border-border mt-16">
+    <div class="max-w-6xl mx-auto px-5 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted">
+      <span>© 2026 Iga Website. Built with Kallo.</span>
+      <span class="flex items-center gap-1">Made with <span class="text-primary-600">♥</span> and TypeScript</span>
+    </div>
+  </footer>
+</View>
