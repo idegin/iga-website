@@ -111,7 +111,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
-            {CONTACT.phone ? (
+            {/* {CONTACT.phone ? (
               <a
                 href={CONTACT.phoneHref || `tel:${CONTACT.phone}`}
                 className={cn(
@@ -124,7 +124,7 @@ export function SiteHeader() {
                 <Icon icon={CONTACT_ICONS.phone} size="sm" />
                 {CONTACT.phone}
               </a>
-            ) : null}
+            ) : null} */}
 
             <ButtonLink
               href={CTA.primary.href}
