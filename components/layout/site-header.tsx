@@ -55,7 +55,7 @@ export function SiteHeader() {
       <header
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,border-color] duration-300 ease-standard",
-          solid
+          solid && !open
             ? "border-b border-border bg-surface/95 backdrop-blur-md shadow-card"
             : "border-b border-transparent bg-transparent",
         )}
@@ -67,7 +67,7 @@ export function SiteHeader() {
             className="relative z-10 shrink-0"
           >
             <Image
-              src={solid ? "/brand/logo.png" : "/brand/logo-white.png"}
+              src={onDarkChrome ? "/brand/logo-white.png" : "/brand/logo.png"}
               alt={SITE.legalName}
               width={1245}
               height={260}
@@ -143,9 +143,9 @@ export function SiteHeader() {
               aria-label={open ? "Close menu" : "Open menu"}
               className={cn(
                 "tap relative z-10 -mr-2 inline-flex items-center justify-center rounded-button transition-colors duration-200 lg:hidden",
-                open || solid
-                  ? "text-primary hover:bg-ink-100"
-                  : "text-white hover:bg-white/10",
+                onDarkChrome
+                  ? "text-white hover:bg-white/10"
+                  : "text-primary hover:bg-ink-100",
               )}
             >
               <Icon icon={open ? UI_ICONS.close : UI_ICONS.menu} size="lg" />
