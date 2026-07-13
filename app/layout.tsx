@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Manrope } from "next/font/google";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -12,8 +12,14 @@ const manrope = Manrope({
   fallback: ["Inter", "system-ui", "sans-serif"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#26428B",
+  colorScheme: "light",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
+  manifest: "/manifest.webmanifest",
   title: {
     default: `${SITE.name} — ${SITE.tagline}`,
     template: `%s | ${SITE.name}`,

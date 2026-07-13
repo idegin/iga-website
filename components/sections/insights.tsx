@@ -4,8 +4,16 @@ import { ButtonLink } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { INSIGHTS } from "@/lib/content";
+import { ARTICLES } from "@/lib/articles";
 import { UI_ICONS } from "@/lib/icons";
+
+const INSIGHTS = ARTICLES.slice(0, 3).map((a) => ({
+  title: a.title,
+  category: a.category,
+  href: `/insights/${a.slug}`,
+  image: a.image,
+  alt: a.alt,
+}));
 
 export function Insights() {
   return (
