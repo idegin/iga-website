@@ -2,19 +2,22 @@
   "name": "iga-website",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "kallo dev",
-    "build": "kallo build",
-    "start": "kallo start"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
-    "@kallojs/runtime": "latest",
-    "@kallojs/server": "latest"
+    "next": "16.2.10",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@kallojs/cli": "latest",
-    "tailwindcss": "^4.0.0",
-    "@tailwindcss/cli": "^4.0.0"
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
