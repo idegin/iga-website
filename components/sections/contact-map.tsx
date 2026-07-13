@@ -6,7 +6,10 @@ import { CONTACT, SITE } from "@/lib/site";
 
 export function ContactMap() {
   const { street, city, state, country } = CONTACT.address;
-  const full = [street, city, state, country].filter(Boolean).join(", ");
+  const hasAddress = Boolean(street && city);
+  const full = hasAddress
+    ? [street, city, state, country].filter(Boolean).join(", ")
+    : "";
   const query = CONTACT.mapQuery || full;
 
   return (
