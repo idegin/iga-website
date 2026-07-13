@@ -1,55 +1,146 @@
-# IGA Global Website Design Direction
+# DESIGN.md
 
-## Creative & UI/UX Design Guide
+# IGA Global Website Design System
 
-**Version:** 1.0
+**Project:** IGA Global Investment Ltd
+**Industry:** Real Estate Investment Advisory & Property Development
+**Document Version:** 1.0
+**Status:** Design Specification
 
 ---
 
 # Design Philosophy
 
-The IGA Global website should communicate **wealth, trust, stability, sophistication, and aspiration**. The experience should feel more like a premium investment firm than a conventional real estate agency. Every interaction should reinforce confidence, professionalism, and long-term value.
+IGA Global is **not** a property listing platform.
 
-The visual identity should evoke the same emotional response as established global investment and luxury real estate brands. The interface should feel refined, spacious, and intentionally minimal, allowing high-quality imagery and content to carry the narrative.
+The website should position the company as a **premium real estate investment advisory and development firm** focused on trust, wealth creation, affordability, and long-term partnerships.
 
-**Brand Personality**
+The experience should feel closer to:
 
-* Premium
-* Professional
-* Elegant
-* Modern
-* Trustworthy
-* Aspirational
-* Human
-* Confident
-* Timeless
+* BlackRock
+* JLL
+* CBRE
+* Knight Frank
+* Savills
 
----
+than traditional real estate marketplaces.
 
-# Overall Design Language
+Every interaction should communicate:
 
-The website should follow a **Luxury Corporate Minimalism** aesthetic.
+* Trust
+* Stability
+* Premium quality
+* Confidence
+* Professionalism
+* Long-term investment
 
-Characteristics include:
-
-* Large whitespace
-* Elegant typography
-* Strong visual hierarchy
-* High-quality architectural photography
-* Glassmorphism used sparingly
-* Soft depth through shadows
-* Minimal decorative elements
-* Rounded corners with restrained use
-* Clean grid systems
-* Smooth motion throughout the experience
-
-The interface should never feel busy or cluttered.
+Avoid loud marketing visuals, excessive animations, or sales-heavy messaging.
 
 ---
 
-# Color System
+# Design Principles
 
-## Primary Brand
+## 1. Trust First
+
+Everything should build credibility.
+
+Use:
+
+* Clean layouts
+* Generous spacing
+* Professional photography
+* Minimal distractions
+
+Avoid:
+
+* Clutter
+* Flashy graphics
+* Stock imagery with exaggerated smiles
+* Cheap-looking icons
+
+---
+
+## 2. Premium Simplicity
+
+The interface should feel expensive without being complicated.
+
+Every component should have room to breathe.
+
+Whitespace is part of the design.
+
+---
+
+## 3. Visual Hierarchy
+
+Each page should naturally guide users from:
+
+Awareness
+
+↓
+
+Education
+
+↓
+
+Trust
+
+↓
+
+Action
+
+Users should never feel overwhelmed.
+
+---
+
+## 4. Conversion-Oriented
+
+Every page exists to move users toward one goal:
+
+**Schedule a Consultation**
+
+All secondary actions should support this primary conversion.
+
+---
+
+# Brand Personality
+
+The brand should feel:
+
+Professional
+
+Confident
+
+Reliable
+
+Modern
+
+Sophisticated
+
+Approachable
+
+Knowledgeable
+
+Transparent
+
+Never feel:
+
+Aggressive
+
+Cheap
+
+Corporate bureaucracy
+
+Overly luxurious
+
+Flashy
+
+Sales-driven
+
+---
+
+# Brand Colors
+
+## Primary
 
 Deep Royal Blue
 
@@ -57,58 +148,43 @@ Deep Royal Blue
 #26428B
 ```
 
-Represents:
+Purpose
 
-* Trust
-* Authority
-* Stability
-* Corporate excellence
-
-Used for
-
-* Navigation
-* Headings
-* Major sections
-* Icons
-* Cards
-* Backgrounds
+* Header
 * Footer
+* Buttons
+* Navigation
+* Icons
+* Important sections
+* Overlays
 
 ---
 
-## Accent
+## Secondary
 
-Luxury Gold
+Gold
 
 ```
 #E3AF64
 ```
 
-Represents
+Purpose
 
-* Wealth
-* Investment
-* Opportunity
-* Premium quality
-
-Used sparingly for
-
-* Primary CTA
 * Highlights
-* Statistics
-* Hover states
+* Underlines
 * Icons
-* Dividers
+* Small accents
+* Statistics
 * Active navigation
-* Decorative lines
+* CTA emphasis
 
-Gold should never dominate the interface.
+Never use gold as the dominant background.
 
 ---
 
 ## Supporting Colors
 
-Pure White
+White
 
 ```
 #FFFFFF
@@ -117,37 +193,37 @@ Pure White
 Off White
 
 ```
-#FAFAFA
+#F8F9FB
 ```
 
 Light Gray
 
 ```
-#F5F6F8
+#EEF2F6
 ```
 
-Border Gray
-
-```
-#E8E8E8
-```
-
-Dark Text
-
-```
-#1F2937
-```
-
-Secondary Text
+Medium Gray
 
 ```
 #6B7280
 ```
 
+Dark Gray
+
+```
+#374151
+```
+
+Near Black
+
+```
+#111827
+```
+
 Success
 
 ```
-#2E7D32
+#22C55E
 ```
 
 Warning
@@ -156,118 +232,158 @@ Warning
 #F59E0B
 ```
 
-Error
+Danger
 
 ```
-#D32F2F
+#EF4444
 ```
 
 ---
 
-# Color Ratios
+# Color Scales
+
+Every color is implemented as a 50–950 scale in `app/globals.css`, following Tailwind's step convention. Scales are generated in OKLCH so lightness steps are perceptually even, and every step is fitted to the sRGB gamut.
+
+The brand hexes above are not approximated — they are pinned as exact anchor steps:
+
+| Scale | Anchor step | Hex |
+| --- | --- | --- |
+| `royal` | 800 | `#26428B` |
+| `gold` | 400 | `#E3AF64` |
+| `ink` | 50 / 100 / 500 / 700 / 900 | `#F8F9FB` `#EEF2F6` `#6B7280` `#374151` `#111827` |
+| `success` | 500 | `#22C55E` |
+| `warning` | 500 | `#F59E0B` |
+| `danger` | 500 | `#EF4444` |
+
+`ink` is the neutral scale. It carries a slight blue cast (hue matched to `royal`) so grays sit with the brand rather than fighting it.
+
+---
+
+## Color Usage Rules
+
+**Gold is not a text color on white.** `gold-400` on white is 1.98:1 — it fails WCAG AA badly. Use gold as a background, rule, underline, or icon fill. For gold-colored *text* on light backgrounds use `gold-700` (5.01:1). On blue backgrounds `gold-400` is safe (4.74:1 on `royal-800`).
+
+**Warning sits close to gold.** `#F59E0B` and `#E3AF64` are near-neighbors in hue. Never rely on that difference alone to signal a warning — always pair with an icon or label. This also satisfies "no information conveyed by color alone."
+
+**Text pairings that meet AA:** body `ink-900` on white (17.7:1), secondary `ink-500` on white (4.8:1), headings `royal-800` on white (9.4:1), white on `royal-800` (9.4:1). For semantic text on white use `success-700`, `danger-600`, `warning-800` — the 500 steps are too light for body text.
+
+---
+
+# Color Usage Ratio
 
 70%
 
-White Space
+White backgrounds
 
 20%
 
-Primary Blue
+Blue
 
 10%
 
-Gold Highlights
+Gold
 
-This ratio should remain consistent across the website.
+The website should feel bright and open.
 
 ---
 
 # Typography
 
-Typography should create an immediate sense of professionalism and elegance.
+Primary Font
 
-## Headings
+**Manrope**
 
-Style
+Fallback
 
-Luxury Serif
-
-Recommended
-
-* Playfair Display
-* Cormorant Garamond
-* Libre Baskerville
-
-Characteristics
-
-* High contrast
-* Sophisticated
-* Editorial
-
-Large headings should feel bold without excessive weight.
+```
+Inter
+```
 
 ---
 
-## Body
-
-Modern Sans Serif
-
-Recommended
-
-* Inter
-* Manrope
-* Plus Jakarta Sans
-* DM Sans
-
-Characteristics
-
-* Clean
-* Highly readable
-* Modern
-
----
-
-## Typography Scale
+## Heading Styles
 
 Hero
 
-64–72px
+64px
 
-Section Titles
+Bold
 
-44–52px
+Line height
 
-Subtitles
+110%
 
-28–34px
+---
 
-Card Titles
+H1
 
-22–26px
+56px
+
+Bold
+
+---
+
+H2
+
+44px
+
+Bold
+
+---
+
+H3
+
+34px
+
+Semibold
+
+---
+
+H4
+
+28px
+
+Semibold
+
+---
+
+H5
+
+22px
+
+Medium
+
+---
+
+Body Large
+
+20px
+
+Regular
+
+---
 
 Body
 
 18px
 
-Small Text
+Regular
+
+---
+
+Small
 
 16px
+
+Regular
+
+---
 
 Caption
 
 14px
 
-Button
-
-16–18px
-
-Line height
-
-150%
-
-Letter spacing
-
-Slightly increased for uppercase headings.
+Medium
 
 ---
 
@@ -281,678 +397,695 @@ Container
 
 1320px
 
-Content Width
-
-720–820px
-
-Section Padding
-
-120–160px
-
-Card Gap
+Padding
 
 32px
 
-Border Radius
+---
 
-16–24px
+Tablet
+
+8-column grid
+
+Container
+
+100%
+
+Padding
+
+24px
 
 ---
 
-# Visual Style
+Mobile
 
-The UI should feel soft and premium.
+4-column grid
 
-Avoid:
-
-Heavy borders
-
-Sharp edges
-
-Harsh shadows
-
-Flat interfaces
-
-Prefer:
-
-Soft elevation
-
-Floating cards
-
-Subtle layering
-
-Glass accents
-
-Depth
-
----
-
-# Cards
-
-Cards should appear elevated.
-
-Properties
-
-Large image
-
-Soft shadow
-
-White background
-
-24px radius
-
-Hover lift
-
-Hover shadow increase
-
-Image zoom
-
-CTA reveal
-
----
-
-# Buttons
-
-Primary Button
-
-Gold background
-
-Dark text
-
-Rounded
-
-Medium weight
-
-Hover
-
-Slight elevation
-
-Glow
-
-Background transition
-
-Scale
-
-102%
-
----
-
-Secondary Button
-
-Blue outline
-
-White background
-
-Hover
-
-Blue fill
-
-White text
-
-Smooth animation
-
----
-
-Text Buttons
-
-Underline animation
-
-Arrow slides
-
----
-
-# Hover Effects
-
-Every interactive element should have feedback.
-
-Cards
-
-Lift
-
-Image zoom
-
-Shadow increase
-
-Border highlight
-
-Buttons
-
-Scale
-
-Glow
-
-Color transition
-
-Arrow movement
-
-Navigation
-
-Animated underline
-
-Gold highlight
-
-Dropdown fade
-
-Icons
-
-Rotation
-
-Micro movement
-
-Opacity transition
-
-Images
-
-Zoom 105%
-
-Overlay fade
-
-Gradient reveal
-
----
-
-# Motion Design
-
-Animation should feel slow and luxurious.
-
-Never abrupt.
-
-Use
-
-Ease In Out
-
-Duration
-
-300–700ms
-
----
-
-# Scroll Experience
-
-Every major section should reveal itself.
-
-Suggested animations
-
-Fade Up
-
-Slide Left
-
-Slide Right
-
-Scale In
-
-Mask Reveal
-
-Staggered Cards
-
-Text Reveal
-
-Image Reveal
-
-Statistics Counter
-
-Progress Bar Fill
-
-Never animate everything simultaneously.
-
----
-
-# Hero Animation
-
-Hero image
-
-Slow parallax movement
-
-Headline
-
-Word-by-word reveal
-
-Subheading
-
-Fade upward
-
-Buttons
-
-Scale in
-
-Floating statistics cards
-
-Float continuously
-
-Background
-
-Very subtle zoom
-
----
-
-# Scroll Transitions
-
-Each section should transition naturally into the next.
-
-Examples
-
-Fade into white
-
-Diagonal divider
-
-Gradient blend
-
-Layer overlap
-
-Image masking
-
-Wave separators
-
-Never use harsh section breaks.
-
----
-
-# Parallax
-
-Use subtle parallax only.
-
-Hero background
-
-Property imagery
-
-Large architectural photos
-
-Landscape sections
-
-Avoid excessive movement.
-
----
-
-# Imagery Style
-
-Photography should be
-
-Bright
-
-High resolution
-
-Natural lighting
-
-Premium
-
-Architectural
-
-Lifestyle-focused
-
-Include
-
-Families
-
-Professionals
-
-Luxury homes
-
-Modern estates
-
-Construction quality
-
-Happy homeowners
-
-Investment meetings
-
-Avoid
-
-Stock-looking imagery
-
-Low quality
-
-Overly posed people
-
-Busy backgrounds
-
----
-
-# Iconography
-
-Style
-
-Outlined
-
-Minimal
-
-Elegant
-
-Consistent stroke weight
-
-No cartoon icons.
-
----
-
-# Glassmorphism
-
-Use lightly.
-
-Suitable for
-
-Floating statistics
-
-Investment metrics
-
-Navigation on hero
-
-CTA cards
-
-Opacity
-
-10–15%
-
-Backdrop blur
+Padding
 
 20px
 
 ---
 
-# Section Design
+# Border Radius
 
-Alternate backgrounds
+Cards
 
-White
+20px
 
-↓
+Buttons
 
-Light Gray
+14px
 
-↓
+Inputs
 
-White
+14px
 
-↓
+Images
 
-Blue Feature Section
+24px
 
-↓
+Sections
 
-White
-
-Avoid repetitive layouts.
+Rounded only where appropriate.
 
 ---
 
-# Statistics
+# Spacing System
 
-Display as premium counters.
+Use an 8px spacing scale.
 
-Examples
+```
+8
+16
+24
+32
+40
+48
+56
+64
+80
+96
+120
+160
+```
 
-12+
-
-Years Experience
-
-500+
-
-Investors
-
-₦20B+
-
-Property Value
-
-95%
-
-Client Satisfaction
-
-Animated counting on scroll.
+Large sections should have 120–160px vertical spacing on desktop.
 
 ---
 
-# Property Cards
+# Shadows
 
-Large photography
+Use soft elevation only.
 
-Location badge
+Never use harsh shadows.
 
-Investment badge
+Cards
 
-Price
-
-ROI label
-
-Amenities
-
-CTA
+Very subtle
 
 Hover
 
-Image zoom
+Medium
 
-Shadow
+Floating components
 
-Button reveal
+Soft shadow
 
-Gold accent line
+---
+
+# Buttons
+
+Primary
+
+Background
+
+Blue
+
+Text
+
+White
+
+Hover
+
+Slightly darker blue
+
+Active
+
+Scale to 98%
+
+---
+
+Secondary
+
+White
+
+Blue border
+
+Blue text
+
+Hover
+
+Blue background
+
+White text
+
+---
+
+Gold Accent Button
+
+Reserved for high-priority actions only.
+
+Do not overuse.
+
+---
+
+# Button Sizes
+
+Small
+
+Medium
+
+Large
+
+Extra Large (Hero only)
 
 ---
 
 # Forms
 
-Minimal
+Inputs
 
-Single-column
+Rounded
 
-Large inputs
+Large
 
-Soft borders
+Comfortable padding
+
+Strong focus state
+
+Blue border on focus
+
+Labels above inputs
+
+Never use placeholder text as labels.
+
+---
+
+# Cards
+
+Cards should feel elevated but subtle.
+
+Properties
+
+White background
 
 Rounded corners
 
-Floating labels
+Soft border
 
-Real-time validation
+Light shadow
 
-Success animation
+Hover
 
-Progress indicator
+Lift by 4px
 
----
-
-# Testimonials
-
-Large quotation
-
-Professional portrait
-
-Gold rating
-
-Company information
-
-Sliding carousel
-
-Auto-play optional
+Increase shadow slightly
 
 ---
 
-# FAQ
+# Icons
+
+**Family: Lucide** (`lucide-react`). Outline-only, drawn on a consistent 24px grid, tree-shaken per icon.
+
+**Stroke weight: 1.5**, not Lucide's default of 2. This is the single most important icon decision on the site. At 2px the set reads utilitarian and app-like; at 1.5px it reads considered and expensive, which is the register this brand needs. The weight is enforced centrally in `components/ui/icon.tsx` — never set `strokeWidth` at a call site.
+
+Icons use `absoluteStrokeWidth`, so the stroke stays visually 1.5px at every size instead of scaling up with the glyph.
+
+## Usage
+
+Always render through the `Icon` wrapper:
+
+```tsx
+<Icon icon={SERVICE_ICONS["market-research"]} size="lg" />
+```
+
+Sizes: `sm` 16 · `md` 20 · `lg` 24 · `xl` 32 · `display` 40.
+
+Icons are decorative by default and are hidden from screen readers. If an icon carries meaning on its own (an icon-only button), pass `label` — it then becomes `role="img"` with an accessible name.
+
+## Icon vocabulary
+
+Do not pick glyphs ad hoc — that is how a set stops looking like a set. Every icon comes from the curated maps in `lib/icons.ts`: `SERVICE_ICONS`, `VALUE_ICONS`, `CONTACT_ICONS`, `UI_ICONS`. Add to those maps rather than importing from `lucide-react` inside a component.
+
+## Social marks
+
+Brand logos are a deliberate exception to the outline rule — a logo is a mark, not a UI icon, and must be filled and correct. They live in `components/ui/social-icon.tsx`.
+
+Note: Lucide removed its brand icons, and Simple Icons no longer ships LinkedIn, so the LinkedIn mark is hand-authored inline. Facebook, Instagram and X come from `@icons-pack/react-simple-icons`.
+
+Never mix Lucide with any other UI icon set.
+
+---
+
+# Imagery
+
+Photography should include:
+
+Modern residential developments
+
+Professional client meetings
+
+Architecture
+
+Construction
+
+Urban skylines
+
+Families
+
+Investment consultations
+
+Professionals reviewing plans
+
+Avoid:
+
+Overly edited images
+
+Low resolution
+
+Crowded scenes
+
+Obvious stock-photo clichés
+
+---
+
+# Illustrations
+
+Keep minimal.
+
+Photography should dominate.
+
+If illustrations are used:
+
+Use simple geometric styles.
+
+---
+
+# Background Treatments
+
+Primary
+
+White
+
+Alternate
+
+Light Gray
+
+Premium sections
+
+Blue background
+
+Use subtle gradients only.
+
+Never use noisy textures.
+
+---
+
+# Animations
+
+Animation should feel natural.
+
+Duration
+
+200–350ms
+
+Use:
+
+Fade
+
+Slide
+
+Scale
+
+Opacity
+
+Avoid:
+
+Bounce
+
+Spin
+
+Elastic
+
+Exaggerated motion
+
+---
+
+# Scroll Animations
+
+Fade Up
+
+Fade Left
+
+Fade Right
+
+Scale In
+
+Each section should animate only once.
+
+---
+
+# Micro Interactions
+
+Buttons
+
+Hover elevation
+
+Cards
+
+Lift slightly
+
+Navigation
+
+Smooth underline transition
 
 Accordion
 
 Smooth expansion
 
-Icon rotation
+Counters
 
-Soft shadow
+Animate on viewport
 
-Gold active state
+Progress indicators
+
+Animated
+
+---
+
+# Header
+
+Sticky
+
+Transparent on hero
+
+Solid on scroll
+
+Height
+
+80px
+
+Desktop
+
+72px
+
+Tablet
+
+64px
+
+Mobile
 
 ---
 
 # Navigation
 
-Transparent over hero
+Desktop
 
-Solid after scroll
+Centered navigation
 
-Sticky
+CTA on right
 
-Height
+Logo left
 
-80–90px
+---
 
-Mega menu for
+Mobile
 
-Services
+Hamburger
 
-Properties
+Full-screen navigation drawer
 
-Resources
-
-Dropdown animation
-
-Fade
-
-Scale
-
-Blur
+Large touch targets
 
 ---
 
 # Footer
 
-Deep Blue background
+Dark Blue background
 
-Gold accents
+Four-column layout
 
-Large spacing
+Generous spacing
 
-Newsletter
+Newsletter subscription
 
-Quick links
+Social links
 
-Social icons
+Legal links
 
-Map
-
-Contact
-
-Trust badges
+Contact information
 
 ---
 
-# Microinteractions
+# Hero Section
 
-Every interaction should feel alive.
+Full viewport
 
-Examples
+Large architectural imagery
 
-Button ripple
+Dark overlay
 
-Hover glow
+Headline left
 
-Input focus
+Supporting copy
 
-Icon movement
+CTA buttons
 
-Counter animation
+Trust indicators
 
-Scroll progress
-
-Image transitions
-
-Navigation indicator
-
-Cursor feedback
+Optional statistic cards
 
 ---
 
-# Loading Experience
+# Section Layout
 
-Logo animation
+Every section should include:
 
-Property outline animation
+Headline
 
-Progress indicator
+Supporting text
 
-Fade into hero
+Visual
 
----
+Content
 
-# Empty States
+CTA where appropriate
 
-Illustrated
-
-Friendly
-
-Helpful
-
-Never blank.
+Alternate image alignment between sections.
 
 ---
 
-# Mobile Design
+# Content Width
 
-Priority
+Maximum reading width
 
-Thumb-friendly
+720px
 
-Large tap targets
-
-Sticky CTA
-
-Bottom action bar
-
-Collapsible navigation
-
-Stacked cards
-
-Optimized typography
-
-Touch gestures
+Do not allow paragraphs to stretch across the screen.
 
 ---
 
 # Accessibility
 
-Contrast ratio minimum WCAG AA
+Minimum contrast ratio WCAG AA
 
-Visible keyboard focus states
+Keyboard navigable
 
-Semantic heading hierarchy
+Visible focus indicators
 
-Large interactive targets
+ARIA labels
 
-Alt text for all imagery
+Semantic HTML
 
-Reduced-motion support
+Alt text for every image
 
-Screen-reader friendly forms
+No information conveyed by color alone
+
+Minimum touch target of 44×44px
+
+---
+
+# Responsive Design
+
+Desktop
+
+1440+
+
+Laptop
+
+1280
+
+Tablet
+
+1024
+
+Small Tablet
+
+768
+
+Large Mobile
+
+480
+
+Small Mobile
+
+360
+
+Every component must adapt gracefully.
 
 ---
 
 # Performance Targets
 
-* Lazy-load below-the-fold images and videos.
-* Serve responsive images in modern formats (AVIF/WebP) with fallbacks where necessary.
-* Use variable fonts where supported to reduce font payload.
-* Keep animations GPU-accelerated using `transform` and `opacity`.
-* Defer non-critical scripts and load third-party integrations only when needed.
-* Aim for a Lighthouse score above 90 in Performance, Accessibility, Best Practices, and SEO.
+Lighthouse Performance
+
+95+
+
+Accessibility
+
+100
+
+Best Practices
+
+100
+
+SEO
+
+100
+
+Core Web Vitals should meet Google's "Good" thresholds.
 
 ---
 
-# Design Principles
+# SEO Requirements
 
-Every page should follow these principles:
+Unique page titles
 
-* **Clear Visual Hierarchy:** Users should always know where to look next.
-* **Consistency:** Maintain uniform spacing, typography, button styles, and iconography across the site.
-* **Progressive Disclosure:** Present information in digestible sections rather than overwhelming users.
-* **Trust First:** Reinforce credibility with testimonials, project imagery, certifications, and clear messaging.
-* **Conversion-Oriented:** Every page should naturally guide visitors toward booking a consultation or exploring investment opportunities.
-* **Premium Simplicity:** Eliminate unnecessary visual noise and allow quality photography, typography, and whitespace to communicate confidence.
+Unique meta descriptions
+
+Open Graph tags
+
+Twitter cards
+
+Structured data
+
+Organization schema
+
+Breadcrumb schema where applicable
+
+Optimized heading hierarchy
+
+Image optimization
+
+Sitemap
+
+Robots.txt
+
+Canonical URLs
 
 ---
 
-# Desired User Experience
+# Components
 
-A visitor should leave the website with the following impressions:
+The design system should include reusable components for:
 
-* "This company is credible and established."
-* "They understand real estate investment, not just property sales."
-* "Their developments look premium and professionally managed."
-* "I can trust them with a significant investment."
-* "Booking a consultation feels like the logical next step."
+* Announcement Bar
+* Header
+* Navigation
+* Mega Menu (if needed)
+* Hero
+* Section Headers
+* CTA Banner
+* Service Cards
+* Value Cards
+* Statistic Cards
+* Timeline
+* Process Steps
+* Testimonial Cards
+* Leadership Cards
+* Blog Cards
+* FAQ Accordion
+* Newsletter Form
+* Contact Form
+* Buttons
+* Badges
+* Tags
+* Breadcrumbs
+* Pagination
+* Modal
+* Drawer
+* Toast Notifications
+* Tabs
+* Empty States
+* Loading Skeletons
+* Error States
+* Success Messages
+* Footer
 
-The overall experience should blend the elegance of a luxury property developer with the clarity and professionalism of a modern financial services brand, creating a digital presence that is memorable, trustworthy, and conversion-focused.
+---
+
+# Page-Specific Design Notes
+
+## Home
+
+Large storytelling experience with alternating layouts, trust indicators, process visualization, investment categories, leadership, insights, FAQ, and a strong consultation-focused closing CTA.
+
+## About
+
+Company story, mission, vision, values, leadership, differentiators, and credibility-building sections with supporting imagery.
+
+## Services
+
+Modular service blocks with clear benefits, process summaries, and consultation CTAs after each major section.
+
+## Investment Solutions
+
+Educational content supported by diagrams, investment pathways, audience segmentation, and comparison cards rather than property listings.
+
+## Projects
+
+Portfolio-style presentation showcasing development philosophy, completed work (when available), capabilities, quality standards, and future vision.
+
+## Why Invest in Nigeria
+
+Data-driven layouts using charts, statistics, maps, timelines, and concise insights to educate investors.
+
+## Insights
+
+Modern editorial layout with featured article, category filters, article cards, newsletter signup, and related content.
+
+## Contact
+
+Prominent contact information, consultation form, interactive map, office details, FAQ, and reassurance messaging.
+
+---
+
+# Token Implementation
+
+The design system lives in `app/globals.css` as Tailwind v4 theme tokens (CSS-first — there is no `tailwind.config.js`). Build against these tokens; never hard-code a hex.
+
+**Color** — `royal` `gold` `ink` `success` `warning` `danger`, each 50–950. Utilities: `bg-royal-800`, `text-gold-700`, `border-ink-200`, etc.
+
+**Semantic roles** — prefer these over raw scale steps, because they rebind by section:
+
+`surface` `surface-alt` `surface-sunken` `foreground` `muted` `heading` `border` `border-strong` `primary` `primary-hover` `on-primary` `accent` `accent-hover` `accent-text` `on-accent` `ring`
+
+**Blue sections** — put `surface-blue` on the section. Every semantic role above flips to its on-blue value, so `text-muted`, `border-border`, headings and focus rings adapt with no per-element overrides.
+
+**Type** — `text-hero` `text-h1`…`text-h5` `text-body-lg` `text-body` `text-small` `text-caption`. All fluid via `clamp()`, capping at the desktop sizes specified above. Bare `h1`–`h5` elements are already styled; the utilities are for when semantics and size need to differ.
+
+**Layout** — `container-page` (1320px + responsive gutters), `section` (120–160px desktop vertical rhythm), `measure` (720px reading width).
+
+**Radius** — `rounded-button` (14px), `rounded-input` (14px), `rounded-card` (20px), `rounded-image` (24px).
+
+**Shadow** — `shadow-card`, `shadow-card-hover`, `shadow-float`.
+
+**Motion** — `ease-standard`, `ease-out-soft`; durations `--duration-fast` (200ms), `--duration-base` (280ms), `--duration-slow` (350ms). Scroll reveals: `animate-fade-up`, `animate-fade-left`, `animate-fade-right`, `animate-scale-in`. Reduced motion is respected globally.
+
+**Helpers** — `lift` (4px hover lift + shadow), `zoom-media` (image zoom on hover), `eyebrow` (uppercase label with gold rule), `numeric` (tabular figures — use for every statistic), `tap` (44×44px minimum touch target).
+
+---
+
+# AI Implementation Guidelines
+
+AI-assisted design tools (including Figma AI, Lovable, v0, Bolt, Relume, or similar) should follow these constraints:
+
+* Maintain strict adherence to the defined color palette and typography.
+* Use a consistent spacing system and component library across every page.
+* Generate semantic, accessible layouts with reusable components.
+* Avoid unnecessary decorative elements or visual clutter.
+* Prioritize readability, accessibility, and performance over visual complexity.
+* Ensure every page prominently supports the primary CTA: **Schedule a Consultation**.
+* Keep layouts modular so components can be reused across future pages and campaigns.
+* Design for scalability, allowing future additions such as property showcases, client portals, or investor dashboards without requiring a redesign.
