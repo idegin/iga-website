@@ -16,11 +16,11 @@ export function CtaBanner() {
         aria-hidden
         fill
         sizes="100vw"
-        className="-z-20 object-cover opacity-25"
+        className="-z-20 object-cover opacity-55"
       />
       <span
         aria-hidden
-        className="absolute inset-0 -z-10 bg-linear-to-r from-royal-950 via-royal-900/95 to-royal-800/80"
+        className="absolute inset-0 -z-10 bg-linear-to-b from-royal-950/92 via-royal-950/85 to-royal-900/80"
       />
 
       <div className="container-page py-24 lg:py-32">

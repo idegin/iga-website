@@ -2,8 +2,8 @@ export const SITE = {
   name: "IGA Global Investments",
   legalName: "IGA Global Investments Ltd",
   shortName: "IGA Global",
-  domain: "igaglobalinvestment.org",
-  url: "https://igaglobalinvestment.org",
+  domain: "www.igaglobalinvestment.org",
+  url: "https://www.igaglobalinvestment.org",
   locale: "en_NG",
   tagline: "Building Wealth Through Smart Real Estate Investments",
   description:
@@ -35,6 +35,7 @@ type Contact = {
     countryCode: string;
   };
   mapUrl: string;
+  mapQuery: string;
   hours: { days: string; opens: string; closes: string }[];
 };
 
@@ -52,6 +53,7 @@ export const CONTACT: Contact = {
     countryCode: "NG",
   },
   mapUrl: "",
+  mapQuery: "",
   hours: [
     { days: "Monday – Friday", opens: "09:00", closes: "17:00" },
     { days: "Saturday", opens: "10:00", closes: "14:00" },

@@ -29,11 +29,15 @@ export function PageHero({
         fill
         priority
         sizes="100vw"
-        className="-z-20 object-cover opacity-25"
+        className="-z-20 scale-105 object-cover opacity-70"
       />
       <span
         aria-hidden
-        className="absolute inset-0 -z-10 bg-linear-to-br from-royal-950 via-royal-900/95 to-royal-800/80"
+        className="absolute inset-0 -z-10 bg-linear-to-r from-royal-950 via-royal-950/85 to-royal-900/45"
+      />
+      <span
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-linear-to-t from-royal-950/80 via-transparent to-royal-950/40"
       />
 
       <div className="container-page">

@@ -136,11 +136,11 @@ export default function WhyInvestPage() {
           aria-hidden
           fill
           sizes="100vw"
-          className="-z-20 object-cover opacity-20"
+          className="-z-20 object-cover opacity-60"
         />
         <span
           aria-hidden
-          className="absolute inset-0 -z-10 bg-linear-to-br from-royal-950 via-royal-900/95 to-royal-800/85"
+          className="absolute inset-0 -z-10 bg-linear-to-r from-royal-950 via-royal-950/88 to-royal-900/55"
         />
 
         <div className="container-page grid items-center gap-14 lg:grid-cols-2 lg:gap-20">

@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/page-hero";
 import { ConsultationForm } from "@/components/sections/consultation-form";
+import { ContactMap } from "@/components/sections/contact-map";
 import { Faq } from "@/components/sections/faq";
+import { SocialIcon } from "@/components/ui/social-icon";
 import { Icon } from "@/components/ui/icon";
 import { Reveal } from "@/components/ui/reveal";
-import { CONTACT_ICONS } from "@/lib/icons";
+import { CONTACT_ICONS, UI_ICONS } from "@/lib/icons";
 import { FAQS } from "@/lib/content";
 import { breadcrumbSchema, faqSchema, JsonLd } from "@/lib/schema";
-import { CONTACT } from "@/lib/site";
+import { CONTACT, SITE, SOCIALS } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -46,6 +48,8 @@ export default function ContactPage() {
     value: string;
     href?: string;
   }[];
+
+  const socials = SOCIALS.filter((social) => social.href);
 
   return (
     <>
@@ -124,6 +128,58 @@ export default function ContactPage() {
                 </div>
               </Reveal>
             ) : null}
+            {CONTACT.whatsapp ? (
+              <Reveal delay={0.16}>
+                <a
+                  href={`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 flex items-center gap-4 rounded-card border border-success-200 bg-success-50 p-6 transition-colors duration-200 hover:border-success-500"
+                >
+                  <span className="inline-flex shrink-0 rounded-button bg-success-600 p-3 text-white">
+                    <Icon icon={CONTACT_ICONS.whatsapp} size="lg" />
+                  </span>
+                  <span>
+                    <span className="block text-small font-semibold text-heading">
+                      Message us on WhatsApp
+                    </span>
+                    <span className="mt-1 block text-caption text-muted">
+                      Often the quickest way to reach an advisor.
+                    </span>
+                  </span>
+                  <Icon
+                    icon={UI_ICONS.arrowDiagonal}
+                    size="md"
+                    className="ml-auto shrink-0 text-success-700"
+                  />
+                </a>
+              </Reveal>
+            ) : null}
+
+            {socials.length > 0 ? (
+              <Reveal delay={0.2}>
+                <div className="mt-8 border-t border-border pt-8">
+                  <p className="text-caption font-semibold uppercase tracking-eyebrow text-accent-text">
+                    Follow IGA Global
+                  </p>
+                  <ul className="mt-5 flex gap-3">
+                    {socials.map((social) => (
+                      <li key={social.label}>
+                        <a
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${SITE.name} on ${social.label}`}
+                          className="tap inline-flex items-center justify-center rounded-full border border-border text-muted transition-colors duration-200 hover:border-primary hover:bg-primary hover:text-on-primary"
+                        >
+                          <SocialIcon platform={social.label} size={18} />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+            ) : null}
           </div>
 
           <div className="lg:col-span-7">
@@ -133,6 +189,8 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <ContactMap />
 
       <Faq />
 
