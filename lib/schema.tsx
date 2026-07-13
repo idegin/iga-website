@@ -54,6 +54,19 @@ export function articleSchema(article: Article) {
   };
 }
 
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE.url}/#website`,
+    url: SITE.url,
+    name: SITE.legalName,
+    description: SITE.description,
+    inLanguage: "en-NG",
+    publisher: { "@id": ORG_ID },
+  };
+}
+
 export function serviceSchema(name: string, description: string) {
   return {
     "@context": "https://schema.org",

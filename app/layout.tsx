@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import { FloatingActions } from "@/components/layout/floating-actions";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { websiteSchema } from "@/lib/schema";
 import { CONTACT, SITE, SOCIALS } from "@/lib/site";
 import "./globals.css";
 
@@ -129,7 +130,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema()),
+            __html: JSON.stringify([organizationSchema(), websiteSchema()]),
           }}
         />
       </body>

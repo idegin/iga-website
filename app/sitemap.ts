@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { ARTICLES } from "@/lib/articles";
+import { LEGAL_DOCS, LEGAL_LAST_UPDATED } from "@/lib/legal";
 import { SITE } from "@/lib/site";
 
 const STATIC_ROUTES: {
@@ -11,6 +12,7 @@ const STATIC_ROUTES: {
   { path: "/services", priority: 0.9, changeFrequency: "monthly" },
   { path: "/investment-solutions", priority: 0.9, changeFrequency: "monthly" },
   { path: "/why-invest-in-nigeria", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/projects", priority: 0.8, changeFrequency: "monthly" },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
   { path: "/insights", priority: 0.7, changeFrequency: "weekly" },
   { path: "/contact", priority: 0.9, changeFrequency: "yearly" },
@@ -25,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
+    })),
+    ...LEGAL_DOCS.map((doc) => ({
+      url: `${SITE.url}/${doc.slug}`,
+      lastModified: new Date(LEGAL_LAST_UPDATED),
+      changeFrequency: "yearly" as const,
+      priority: 0.2,
     })),
     ...ARTICLES.map((article) => ({
       url: `${SITE.url}/insights/${article.slug}`,

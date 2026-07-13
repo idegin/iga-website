@@ -15,7 +15,7 @@
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "resend": "^6.17.2",
+    "sharp": "^0.35.3",
     "tailwind-merge": "^3.6.0",
     "zod": "^4.4.3"
   },
@@ -25,7 +25,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "png-to-ico": "^3.0.2",
-    "sharp": "^0.35.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

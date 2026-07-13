@@ -9,7 +9,7 @@ import { Icon } from "@/components/ui/icon";
 import { Reveal } from "@/components/ui/reveal";
 import { FAQS, SERVICE_DETAIL } from "@/lib/content";
 import { UI_ICONS } from "@/lib/icons";
-import { breadcrumbSchema, faqSchema, JsonLd } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, JsonLd, serviceSchema } from "@/lib/schema";
 import { CTA } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -185,6 +185,9 @@ export default function ServicesPage() {
         schema={[
           breadcrumbSchema([{ name: "Services", path: "/services" }]),
           faqSchema(FAQS),
+          ...SERVICE_DETAIL.map((service) =>
+            serviceSchema(service.title, service.summary),
+          ),
         ]}
       />
     </>

@@ -1,7 +1,7 @@
 "use server";
 
-import { Resend } from "resend";
 import { z } from "zod";
+import { sendMail } from "./mail";
 import { CONTACT, SITE } from "./site";
 
 const ConsultationSchema = z.object({
@@ -13,11 +13,33 @@ const ConsultationSchema = z.object({
   company: z.string().max(0).optional(),
 });
 
+const NewsletterSchema = z.object({
+  email: z.email("Enter a valid email address."),
+  company: z.string().max(0).optional(),
+});
+
 export type FormState = {
   status: "idle" | "success" | "error";
   message?: string;
   errors?: Record<string, string>;
 };
+
+const escape = (value: string) =>
+  value.replace(
+    /[&<>"']/g,
+    (char) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;",
+      })[char] as string,
+  );
+
+const FALLBACK = CONTACT.email
+  ? `We could not send your request just now. Please email ${CONTACT.email} and we will pick it up.`
+  : "We could not send your request just now. Please try again shortly.";
 
 export async function submitConsultation(
   _prev: FormState,
@@ -40,54 +62,90 @@ export async function submitConsultation(
       const key = String(issue.path[0]);
       if (!errors[key]) errors[key] = issue.message;
     }
-    return { status: "error", message: "Please check the fields below.", errors };
-  }
-
-  const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_INBOX || CONTACT.email;
-  const from = process.env.CONTACT_FROM;
-
-  if (!apiKey || !to || !from) {
     return {
       status: "error",
-      message:
-        "We could not send your request just now. Please email or call us directly and we will pick it up.",
+      message: "Please check the fields below.",
+      errors,
     };
   }
 
   const { name, email, phone, interest, message } = parsed.data;
 
-  try {
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({
-      from,
-      to,
-      replyTo: email,
-      subject: `Consultation request — ${name}`,
-      text: [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone}`,
-        `Interest: ${interest}`,
-        "",
-        message,
-        "",
-        `Sent from ${SITE.url}`,
-      ].join("\n"),
-    });
+  const rows: [string, string][] = [
+    ["Name", name],
+    ["Email", email],
+    ["Phone", phone],
+    ["Interest", interest],
+  ];
 
-    if (error) throw new Error(error.message);
-  } catch {
-    return {
-      status: "error",
-      message:
-        "We could not send your request just now. Please email or call us directly and we will pick it up.",
-    };
-  }
+  const result = await sendMail({
+    subject: `Consultation request — ${name}`,
+    replyTo: { address: email, name },
+    text: [
+      ...rows.map(([label, value]) => `${label}: ${value}`),
+      "",
+      message,
+      "",
+      `Sent from ${SITE.url}`,
+    ].join("\n"),
+    html: `
+      <h2 style="font-family:sans-serif">New consultation request</h2>
+      <table style="font-family:sans-serif;border-collapse:collapse">
+        ${rows
+          .map(
+            ([label, value]) =>
+              `<tr><td style="padding:4px 16px 4px 0;color:#6b7280">${label}</td><td style="padding:4px 0"><strong>${escape(value)}</strong></td></tr>`,
+          )
+          .join("")}
+      </table>
+      <p style="font-family:sans-serif;white-space:pre-wrap">${escape(message)}</p>
+      <p style="font-family:sans-serif;color:#6b7280;font-size:12px">Sent from ${SITE.url}</p>
+    `,
+  });
+
+  if (!result.ok) return { status: "error", message: FALLBACK };
 
   return {
     status: "success",
     message:
       "Thank you. Your request is with our advisory team and we will respond within one business day.",
+  };
+}
+
+export async function subscribeToNewsletter(
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const parsed = NewsletterSchema.safeParse({
+    email: String(formData.get("email") ?? ""),
+    company: String(formData.get("company") ?? ""),
+  });
+
+  if (!parsed.success) {
+    return {
+      status: "error",
+      message: parsed.error.issues[0]?.message ?? "Enter a valid email address.",
+    };
+  }
+
+  const { email } = parsed.data;
+
+  const result = await sendMail({
+    subject: `Newsletter signup — ${email}`,
+    replyTo: { address: email },
+    text: `New newsletter subscriber: ${email}\n\nSent from ${SITE.url}`,
+    html: `<p style="font-family:sans-serif">New newsletter subscriber: <strong>${escape(email)}</strong></p>`,
+  });
+
+  if (!result.ok) {
+    return {
+      status: "error",
+      message: "We could not sign you up just now. Please try again shortly.",
+    };
+  }
+
+  return {
+    status: "success",
+    message: "You are subscribed. Look out for our next insight.",
   };
 }

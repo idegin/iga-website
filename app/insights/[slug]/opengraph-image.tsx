@@ -1,9 +1,8 @@
-import { ImageResponse } from "next/og";
-import { OG_SIZE, OgCard } from "@/components/og/og-card";
+import { OG_CONTENT_TYPE, OG_SIZE, ogImage } from "@/components/og/og-card";
 import { ARTICLES, getArticle } from "@/lib/articles";
 
 export const size = OG_SIZE;
-export const contentType = "image/png";
+export const contentType = OG_CONTENT_TYPE;
 export const alt = "IGA Global Investments insight";
 
 export function generateStaticParams() {
@@ -18,16 +17,12 @@ export default async function Image({
   const { slug } = await params;
   const article = getArticle(slug);
 
-  return new ImageResponse(
-    (
-      <OgCard
-        eyebrow={article?.category ?? "Insights"}
-        title={article?.title ?? "Insights"}
-        meta={
-          article ? `${article.readingMinutes} min read · igaglobalinvestment.org` : undefined
-        }
-      />
-    ),
-    size,
-  );
+  return ogImage({
+    eyebrow: article?.category ?? "Insights",
+    title: article?.title ?? "Insights",
+    meta: article
+      ? `${article.readingMinutes} min read · igaglobalinvestment.org`
+      : undefined,
+    image: article?.image ? article.image.replace(/^\//, "") : undefined,
+  });
 }
