@@ -23,13 +23,15 @@ export async function submitConsultation(
   _prev: FormState,
   formData: FormData,
 ): Promise<FormState> {
+  const text = (key: string) => String(formData.get(key) ?? "");
+
   const parsed = ConsultationSchema.safeParse({
-    name: formData.get("name"),
-    email: formData.get("email"),
-    phone: formData.get("phone"),
-    interest: formData.get("interest"),
-    message: formData.get("message"),
-    company: formData.get("company") ?? "",
+    name: text("name"),
+    email: text("email"),
+    phone: text("phone"),
+    interest: text("interest"),
+    message: text("message"),
+    company: text("company"),
   });
 
   if (!parsed.success) {
