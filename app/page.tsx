@@ -9,6 +9,8 @@ import { Process } from "@/components/sections/process";
 import { Services } from "@/components/sections/services";
 import { WhyChoose } from "@/components/sections/why-choose";
 import { WhyNigeria } from "@/components/sections/why-nigeria";
+import { FAQS } from "@/lib/content";
+import { faqSchema, JsonLd } from "@/lib/schema";
 
 export default function HomePage() {
   return (
@@ -24,6 +26,7 @@ export default function HomePage() {
       <Insights />
       <Faq />
       <CtaBanner />
+      <JsonLd schema={faqSchema(FAQS)} />
     </>
   );
 }

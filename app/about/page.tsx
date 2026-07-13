@@ -9,6 +9,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { MISSION, VISION } from "@/lib/content";
 import { VALUE_ICONS } from "@/lib/icons";
+import { breadcrumbSchema, JsonLd } from "@/lib/schema";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -151,6 +152,8 @@ export default function AboutPage() {
 
       <Leadership />
       <CtaBanner />
+
+      <JsonLd schema={breadcrumbSchema([{ name: "About", path: "/about" }])} />
     </>
   );
 }

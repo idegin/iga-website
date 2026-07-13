@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/layout/page-hero";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { Icon } from "@/components/ui/icon";
 import { Reveal } from "@/components/ui/reveal";
+import { ArticleMedia } from "@/components/ui/article-media";
 import { ARTICLES } from "@/lib/articles";
 import { UI_ICONS } from "@/lib/icons";
+import { breadcrumbSchema, JsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -39,13 +40,11 @@ export default function InsightsPage() {
                 className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16"
               >
                 <div className="zoom-media relative aspect-3/2 overflow-hidden rounded-image">
-                  <Image
-                    src={featured.image}
-                    alt={featured.alt}
-                    fill
+                  <ArticleMedia
+                    article={featured}
                     priority
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 ease-standard group-hover:scale-105"
+                    className="transition-transform duration-700 ease-standard group-hover:scale-105"
                   />
                 </div>
 
@@ -104,12 +103,10 @@ export default function InsightsPage() {
                     className="flex h-full flex-col"
                   >
                     <div className="zoom-media relative aspect-3/2 overflow-hidden rounded-image">
-                      <Image
-                        src={article.image}
-                        alt={article.alt}
-                        fill
+                      <ArticleMedia
+                        article={article}
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-700 ease-standard group-hover:scale-105"
+                        className="transition-transform duration-700 ease-standard group-hover:scale-105"
                       />
                     </div>
 
@@ -145,6 +142,8 @@ export default function InsightsPage() {
       </section>
 
       <CtaBanner />
+
+      <JsonLd schema={breadcrumbSchema([{ name: "Insights", path: "/insights" }])} />
     </>
   );
 }

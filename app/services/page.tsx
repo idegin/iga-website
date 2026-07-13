@@ -7,8 +7,9 @@ import { Process } from "@/components/sections/process";
 import { ButtonLink } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { Reveal } from "@/components/ui/reveal";
-import { SERVICE_DETAIL } from "@/lib/content";
+import { FAQS, SERVICE_DETAIL } from "@/lib/content";
 import { UI_ICONS } from "@/lib/icons";
+import { breadcrumbSchema, faqSchema, JsonLd } from "@/lib/schema";
 import { CTA } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -179,6 +180,13 @@ export default function ServicesPage() {
       <Process />
       <Faq />
       <CtaBanner />
+
+      <JsonLd
+        schema={[
+          breadcrumbSchema([{ name: "Services", path: "/services" }]),
+          faqSchema(FAQS),
+        ]}
+      />
     </>
   );
 }

@@ -3,9 +3,11 @@ export type Article = {
   title: string;
   category: string;
   excerpt: string;
-  image: string;
-  alt: string;
+  image?: string;
+  alt?: string;
   readingMinutes: number;
+  publishedAt: string;
+  updatedAt?: string;
   body: { heading?: string; paragraphs: string[] }[];
 };
 
@@ -21,6 +23,7 @@ export const CATEGORIES = [
 export const ARTICLES: Article[] = [
   {
     slug: "how-to-start-investing-in-nigerian-real-estate",
+    publishedAt: "2026-04-14",
     title: "How to start investing in Nigerian real estate",
     category: "Investment",
     excerpt:
@@ -67,6 +70,7 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "why-real-estate-holds-value-against-inflation",
+    publishedAt: "2026-05-06",
     title: "Why real estate holds value against inflation",
     category: "Finance",
     excerpt:
@@ -113,6 +117,7 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "buying-property-safely-what-to-verify-first",
+    publishedAt: "2026-05-28",
     title: "Buying property safely: what to verify first",
     category: "Tips",
     excerpt:
@@ -159,12 +164,11 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "common-property-investment-mistakes",
+    publishedAt: "2026-06-18",
     title: "The investment mistakes we see most often",
     category: "Investment",
     excerpt:
       "Buying on emotion, skipping verification, ignoring the total cost, and chasing a location because someone else did well there.",
-    image: "/images/opp-land.webp",
-    alt: "Residential street at dusk in a developing neighbourhood",
     readingMinutes: 4,
     body: [
       {

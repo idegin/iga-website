@@ -5,6 +5,8 @@ import { Faq } from "@/components/sections/faq";
 import { Icon } from "@/components/ui/icon";
 import { Reveal } from "@/components/ui/reveal";
 import { CONTACT_ICONS } from "@/lib/icons";
+import { FAQS } from "@/lib/content";
+import { breadcrumbSchema, faqSchema, JsonLd } from "@/lib/schema";
 import { CONTACT } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -133,6 +135,13 @@ export default function ContactPage() {
       </section>
 
       <Faq />
+
+      <JsonLd
+        schema={[
+          breadcrumbSchema([{ name: "Contact", path: "/contact" }]),
+          faqSchema(FAQS),
+        ]}
+      />
     </>
   );
 }

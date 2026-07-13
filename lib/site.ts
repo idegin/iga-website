@@ -75,7 +75,6 @@ export const NAV = [
   { label: "Investment Solutions", href: "/investment-solutions" },
   { label: "Projects", href: "/projects" },
   { label: "Insights", href: "/insights" },
-  { label: "Contact", href: "/contact" },
 ] as const;
 
 export const SERVICES = [

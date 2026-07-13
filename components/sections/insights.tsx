@@ -1,19 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { ArticleMedia } from "@/components/ui/article-media";
 import { ARTICLES } from "@/lib/articles";
 import { UI_ICONS } from "@/lib/icons";
 
-const INSIGHTS = ARTICLES.slice(0, 3).map((a) => ({
-  title: a.title,
-  category: a.category,
-  href: `/insights/${a.slug}`,
-  image: a.image,
-  alt: a.alt,
-}));
+const INSIGHTS = ARTICLES.slice(0, 3);
 
 export function Insights() {
   return (
@@ -41,20 +35,21 @@ export function Insights() {
         <ul className="mt-16 grid gap-8 md:grid-cols-3">
           {INSIGHTS.map((post, i) => (
             <Reveal
-              key={post.title}
+              key={post.slug}
               as="li"
               delay={(i % 3) * 0.08}
               className="h-full"
             >
               <article className="group h-full">
-                <Link href={post.href} className="flex h-full flex-col">
+                <Link
+                  href={`/insights/${post.slug}`}
+                  className="flex h-full flex-col"
+                >
                     <div className="zoom-media relative aspect-3/2 overflow-hidden rounded-image">
-                      <Image
-                        src={post.image}
-                        alt={post.alt}
-                        fill
+                      <ArticleMedia
+                        article={post}
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-700 ease-standard group-hover:scale-105"
+                        className="transition-transform duration-700 ease-standard group-hover:scale-105"
                       />
                     </div>
 

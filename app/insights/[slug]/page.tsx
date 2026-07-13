@@ -5,8 +5,11 @@ import { notFound } from "next/navigation";
 import { CtaBanner } from "@/components/sections/cta-banner";
 import { Icon } from "@/components/ui/icon";
 import { Reveal } from "@/components/ui/reveal";
+import { ArticleMedia } from "@/components/ui/article-media";
+import { ShareButtons } from "@/components/ui/share-buttons";
 import { ARTICLES, getArticle } from "@/lib/articles";
 import { UI_ICONS } from "@/lib/icons";
+import { articleSchema, breadcrumbSchema, JsonLd } from "@/lib/schema";
 import { SITE } from "@/lib/site";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -28,7 +31,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       type: "article",
       title: article.title,
       description: article.excerpt,
-      images: [{ url: article.image }],
+      publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt ?? article.publishedAt,
     },
   };
 }
@@ -39,34 +43,28 @@ export default async function ArticlePage({ params }: Params) {
   if (!article) notFound();
 
   const related = ARTICLES.filter((a) => a.slug !== article.slug).slice(0, 3);
-
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: article.excerpt,
-    image: `${SITE.url}${article.image}`,
-    articleSection: article.category,
-    publisher: {
-      "@type": "Organization",
-      name: SITE.legalName,
-      "@id": `${SITE.url}/#organization`,
-    },
-  };
+  const url = `${SITE.url}/insights/${article.slug}`;
+  const published = new Date(article.publishedAt).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <>
       <article>
         <header className="surface-blue relative isolate overflow-hidden pt-36 pb-16 sm:pt-44 sm:pb-20">
-          <Image
-            src={article.image}
-            alt=""
-            aria-hidden
-            fill
-            priority
-            sizes="100vw"
-            className="-z-20 object-cover opacity-20"
-          />
+          {article.image ? (
+            <Image
+              src={article.image}
+              alt=""
+              aria-hidden
+              fill
+              priority
+              sizes="100vw"
+              className="-z-20 object-cover opacity-20"
+            />
+          ) : null}
           <span
             aria-hidden
             className="absolute inset-0 -z-10 bg-linear-to-br from-royal-950 via-royal-900/95 to-royal-800/80"
@@ -105,8 +103,15 @@ export default async function ArticlePage({ params }: Params) {
 
             <h1 className="measure mt-8 text-h1 text-white">{article.title}</h1>
 
-            <p className="mt-6 flex items-center gap-3 text-caption font-semibold uppercase tracking-eyebrow text-accent">
+            <p className="mt-6 flex flex-wrap items-center gap-3 text-caption font-semibold uppercase tracking-eyebrow text-accent">
               {article.category}
+              <span aria-hidden className="h-px w-6 bg-border-strong" />
+              <time
+                dateTime={article.publishedAt}
+                className="numeric text-royal-200"
+              >
+                {published}
+              </time>
               <span aria-hidden className="h-px w-6 bg-border-strong" />
               <span className="numeric text-royal-200">
                 {article.readingMinutes} min read
@@ -138,7 +143,13 @@ export default async function ArticlePage({ params }: Params) {
                 </Reveal>
               ))}
 
-              <aside className="mt-16 rounded-card border border-border bg-surface-alt p-8">
+              <ShareButtons
+                url={url}
+                title={article.title}
+                className="mt-14 border-t border-border pt-8"
+              />
+
+              <aside className="mt-12 rounded-card border border-border bg-surface-alt p-8">
                 <p className="eyebrow">Next step</p>
                 <p className="mt-4 text-body text-muted">
                   If you are weighing a specific property or a first investment,
@@ -172,12 +183,10 @@ export default async function ArticlePage({ params }: Params) {
                 <article className="group">
                   <Link href={`/insights/${item.slug}`} className="flex flex-col">
                     <div className="zoom-media relative aspect-3/2 overflow-hidden rounded-image">
-                      <Image
-                        src={item.image}
-                        alt={item.alt}
-                        fill
+                      <ArticleMedia
+                        article={item}
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover transition-transform duration-700 ease-standard group-hover:scale-105"
+                        className="transition-transform duration-700 ease-standard group-hover:scale-105"
                       />
                     </div>
                     <p className="mt-5 text-caption font-semibold uppercase tracking-eyebrow text-accent-text">
@@ -196,9 +205,14 @@ export default async function ArticlePage({ params }: Params) {
 
       <CtaBanner />
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      <JsonLd
+        schema={[
+          articleSchema(article),
+          breadcrumbSchema([
+            { name: "Insights", path: "/insights" },
+            { name: article.title, path: `/insights/${article.slug}` },
+          ]),
+        ]}
       />
     </>
   );

@@ -12,6 +12,7 @@ import {
   Landmark,
   Leaf,
   Lightbulb,
+  Link2,
   Mail,
   MapPin,
   Menu,
@@ -67,4 +68,5 @@ export const UI_ICONS = {
   check: Check,
   quote: Quote,
   star: Star,
+  link: Link2,
 } as const;
