@@ -97,7 +97,7 @@
   --color-on-accent: var(--color-royal-950);
   --color-ring: var(--color-royal-600);
 
-  --font-sans: var(--font-manrope), sans-serif;
+  --font-sans: var(--font-manrope);
 
   --text-caption: 0.875rem; /* 14 */
   --text-caption--line-height: 1.5;
