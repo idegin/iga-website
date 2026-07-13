@@ -1,5 +1,6 @@
 import {
   ArrowRight,
+  ArrowUp,
   ArrowUpRight,
   Building2,
   ChartLine,
@@ -59,6 +60,7 @@ export const CONTACT_ICONS = {
 
 export const UI_ICONS = {
   arrow: ArrowRight,
+  arrowUp: ArrowUp,
   arrowDiagonal: ArrowUpRight,
   expand: Plus,
   collapse: Minus,

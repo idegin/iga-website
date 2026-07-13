@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope } from "next/font/google";
+import { FloatingActions } from "@/components/layout/floating-actions";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { CONTACT, SITE, SOCIALS } from "@/lib/site";
@@ -56,13 +57,24 @@ export const metadata: Metadata = {
 };
 
 function organizationSchema() {
-  const { street, city, state, postalCode, country } = CONTACT.address;
+  const { street, area, city, state, postalCode, country } = CONTACT.address;
   const hasAddress = Boolean(street && city);
   const socials = SOCIALS.filter((s) => s.href).map((s) => s.href);
+  const openingHours = CONTACT.hours
+    .filter((h) => h.opens && h.closes)
+    .map((h) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: h.days
+        .split("–")
+        .map((d) => d.trim())
+        .filter(Boolean),
+      opens: h.opens,
+      closes: h.closes,
+    }));
 
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "RealEstateAgent"],
     "@id": `${SITE.url}/#organization`,
     name: SITE.legalName,
     alternateName: SITE.shortName,
@@ -81,10 +93,11 @@ function organizationSchema() {
         availableLanguage: "English",
       },
     }),
+    ...(openingHours.length > 0 && { openingHoursSpecification: openingHours }),
     ...(hasAddress && {
       address: {
         "@type": "PostalAddress",
-        streetAddress: street,
+        streetAddress: [street, area].filter(Boolean).join(", "),
         addressLocality: city,
         addressRegion: state,
         postalCode,
@@ -112,6 +125,7 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <FloatingActions />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

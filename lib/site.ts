@@ -21,13 +21,18 @@ export const SITE = {
   founded: "",
 } as const;
 
+export const PLACEHOLDER_CONTACT_DETAILS = true;
+
 type Contact = {
+  isPlaceholder: boolean;
   phone: string;
   phoneHref: string;
   whatsapp: string;
   email: string;
+  salesEmail: string;
   address: {
     street: string;
+    area: string;
     city: string;
     state: string;
     postalCode: string;
@@ -40,20 +45,23 @@ type Contact = {
 };
 
 export const CONTACT: Contact = {
-  phone: "",
-  phoneHref: "",
-  whatsapp: "",
-  email: "",
+  isPlaceholder: PLACEHOLDER_CONTACT_DETAILS,
+  phone: "+234 803 555 0142",
+  phoneHref: "tel:+2348035550142",
+  whatsapp: "+2348035550142",
+  email: "info@igaglobalinvestment.org",
+  salesEmail: "invest@igaglobalinvestment.org",
   address: {
-    street: "",
-    city: "",
-    state: "",
-    postalCode: "",
+    street: "14 Dawaki Crescent",
+    area: "Dawaki",
+    city: "Abuja",
+    state: "FCT",
+    postalCode: "901101",
     country: "Nigeria",
     countryCode: "NG",
   },
-  mapUrl: "",
-  mapQuery: "",
+  mapUrl: "https://maps.google.com/?q=Dawaki,+Abuja,+Nigeria",
+  mapQuery: "Dawaki, Abuja, Nigeria",
   hours: [
     { days: "Monday – Friday", opens: "09:00", closes: "17:00" },
     { days: "Saturday", opens: "10:00", closes: "14:00" },
@@ -64,10 +72,16 @@ export const CONTACT: Contact = {
 export type SocialPlatform = "LinkedIn" | "Facebook" | "Instagram" | "X";
 
 export const SOCIALS: { label: SocialPlatform; href: string }[] = [
-  { label: "LinkedIn", href: "" },
-  { label: "Facebook", href: "" },
-  { label: "Instagram", href: "" },
-  { label: "X", href: "" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/iga-global-investments",
+  },
+  { label: "Facebook", href: "https://www.facebook.com/igaglobalinvestments" },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/igaglobalinvestments",
+  },
+  { label: "X", href: "https://x.com/igaglobalinvest" },
 ];
 
 export const NAV = [
