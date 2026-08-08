@@ -9,6 +9,10 @@ const INITIALS = LEADERSHIP.ceo.name
   .join("");
 
 export function Leadership() {
+  if (process.env.NODE_ENV === "production") {
+    return null;
+  }
+
   return (
     <section
       aria-labelledby="leadership-heading"
