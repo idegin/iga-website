@@ -54,7 +54,7 @@ export function Leadership() {
                 {LEADERSHIP.ceo.name}
               </p>
               <p className="mt-1 text-small text-muted">
-                {LEADERSHIP.ceo.role}, IGA Global Investments Ltd
+                {LEADERSHIP.ceo.role}, IGA Global Investment Ltd
               </p>
             </div>
           </Reveal>

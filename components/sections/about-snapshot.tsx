@@ -30,7 +30,7 @@ export function AboutSnapshot() {
               A property investment firm, not a property marketplace
             </h2>
             <p className="mt-6 text-body-lg text-muted">
-              IGA Global Investments Ltd is a property investment advisory and
+              IGA Global Investment Ltd is a property investment advisory and
               development firm helping clients invest in residential real estate
               in Nigeria. We are paid to give you a straight answer, not to move
               a listing.

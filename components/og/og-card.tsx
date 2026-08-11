@@ -145,7 +145,7 @@ export async function ogImage({
                 letterSpacing: "-0.01em",
               }}
             >
-              IGA Global Investments
+              IGA Global Investment
             </div>
           </div>
 

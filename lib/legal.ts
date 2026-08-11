@@ -15,7 +15,7 @@ export const LEGAL_DOCS: LegalDoc[] = [
     slug: "privacy-policy",
     title: "Privacy Policy",
     description:
-      "How IGA Global Investments Ltd collects, uses, and protects the personal information you share with us.",
+      "How IGA Global Investment Ltd collects, uses, and protects the personal information you share with us.",
     intro:
       "This policy explains what we collect when you use this website or contact us, why we collect it, and what we do with it. It is written to be read, not to be survived.",
     sections: [
@@ -62,20 +62,20 @@ export const LEGAL_DOCS: LegalDoc[] = [
     slug: "terms-of-use",
     title: "Terms of Use",
     description:
-      "The terms on which IGA Global Investments Ltd makes this website and its content available to you.",
+      "The terms on which IGA Global Investment Ltd makes this website and its content available to you.",
     intro:
       "By using this website you accept these terms. They are short, and the most important one is the third.",
     sections: [
       {
         heading: "About this website",
         paragraphs: [
-          "This site is published by IGA Global Investments Ltd. It describes our advisory and development services and provides general educational material about property investment in Nigeria.",
+          "This site is published by IGA Global Investment Ltd. It describes our advisory and development services and provides general educational material about property investment in Nigeria.",
         ],
       },
       {
         heading: "Intellectual property",
         paragraphs: [
-          "The content, branding, and design of this site belong to IGA Global Investments Ltd. You may read and share it. You may not reproduce it commercially without our permission.",
+          "The content, branding, and design of this site belong to IGA Global Investment Ltd. You may read and share it. You may not reproduce it commercially without our permission.",
         ],
       },
       {

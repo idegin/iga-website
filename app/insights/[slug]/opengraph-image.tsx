@@ -3,7 +3,7 @@ import { ARTICLES, getArticle } from "@/lib/articles";
 
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
-export const alt = "IGA Global Investments insight";
+export const alt = "IGA Global Investment insight";
 
 export function generateStaticParams() {
   return ARTICLES.map((article) => ({ slug: article.slug }));

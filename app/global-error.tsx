@@ -33,7 +33,7 @@ export default function GlobalError({
               margin: 0,
             }}
           >
-            IGA Global Investments
+            IGA Global Investment
           </p>
           <h1
             style={{

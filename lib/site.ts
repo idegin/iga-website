@@ -1,13 +1,13 @@
 export const SITE = {
-  name: "IGA Global Investments",
-  legalName: "IGA Global Investments Ltd",
+  name: "IGA Global Investment",
+  legalName: "IGA Global Investment Ltd",
   shortName: "IGA Global",
   domain: "www.igaglobalinvestment.org",
   url: "https://www.igaglobalinvestment.org",
   locale: "en_NG",
   tagline: "Building Wealth Through Smart Real Estate Investments",
   description:
-    "IGA Global Investments Ltd helps individuals, families, and diaspora investors unlock long-term value through trusted property investment advisory and residential development across Nigeria.",
+    "IGA Global Investment Ltd helps individuals, families, and diaspora investors unlock long-term value through trusted property investment advisory and residential development across Nigeria.",
   shortDescription:
     "Trusted property investment advisory and residential development across Nigeria.",
   keywords: [
@@ -46,9 +46,9 @@ type Contact = {
 
 export const CONTACT: Contact = {
   isPlaceholder: PLACEHOLDER_CONTACT_DETAILS,
-  phone: "+234 803 555 0142",
-  phoneHref: "tel:+2348035550142",
-  whatsapp: "+2348035550142",
+  phone: "+234 911 002 8879",
+  phoneHref: "tel:+2349110028879",
+  whatsapp: "+2349110028879",
   email: "info@igaglobalinvestment.org",
   salesEmail: "invest@igaglobalinvestment.org",
   address: {

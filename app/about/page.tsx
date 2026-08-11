@@ -15,7 +15,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "IGA Global Investments Ltd is a property investment advisory and development firm helping individuals, families, and diaspora investors build wealth through Nigerian real estate.",
+    "IGA Global Investment Ltd is a property investment advisory and development firm helping individuals, families, and diaspora investors build wealth through Nigerian real estate.",
   alternates: { canonical: "/about" },
 };
 
@@ -48,7 +48,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About"
         title="Advisors first, developers second"
-        lead="IGA Global Investments Ltd exists to help individuals, families, and diaspora investors put money into Nigerian residential property with their eyes open."
+        lead="IGA Global Investment Ltd exists to help individuals, families, and diaspora investors put money into Nigerian residential property with their eyes open."
         image="/images/values.webp"
       />
 

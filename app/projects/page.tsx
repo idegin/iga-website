@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Our development philosophy and standards, and the residential projects IGA Global Investments is delivering across Abuja and Nigeria.",
+    "Our development philosophy and standards, and the residential projects IGA Global Investment is delivering across Abuja and Nigeria.",
   alternates: { canonical: "/projects" },
 };
 

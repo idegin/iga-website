@@ -2,7 +2,7 @@ import { OG_CONTENT_TYPE, OG_SIZE, ogImage } from "@/components/og/og-card";
 
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
-export const alt = "Let's talk about what you are trying to build — IGA Global Investments";
+export const alt = "Let's talk about what you are trying to build — IGA Global Investment";
 
 export default async function Image() {
   return ogImage({

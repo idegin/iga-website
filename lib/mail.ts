@@ -16,7 +16,7 @@ export type MailResult =
 export function mailConfig() {
   const token = process.env.ZEPTOMAIL_TOKEN;
   const fromAddress = process.env.CONTACT_FROM;
-  const fromName = process.env.CONTACT_FROM_NAME || "IGA Global Investments";
+  const fromName = process.env.CONTACT_FROM_NAME || "IGA Global Investment";
   const to = process.env.CONTACT_INBOX;
 
   if (!token || !fromAddress || !to) return null;
