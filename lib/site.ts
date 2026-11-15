@@ -46,9 +46,9 @@ type Contact = {
 
 export const CONTACT: Contact = {
   isPlaceholder: PLACEHOLDER_CONTACT_DETAILS,
-  phone: "+234 911 002 8879",
-  phoneHref: "tel:+2349110028879",
-  whatsapp: "+2349110028879",
+  phone: "+234 905 500 8883",
+  phoneHref: "tel:+2349055008883",
+  whatsapp: "+2349055008883",
   email: "info@igaglobalinvestment.org",
   salesEmail: "invest@igaglobalinvestment.org",
   address: {
